@@ -12,6 +12,7 @@ void draw() {
   background(255, 255, 255);
   inscribe(200,200,100,5);
   smooth();
+  saveFrame("output.png");
 }
 
 void drawCircle(float x, float y, float radius){
