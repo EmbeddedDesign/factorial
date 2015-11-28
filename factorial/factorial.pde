@@ -21,10 +21,14 @@ void setup() {
 
 // draw
 void draw() {
-  baseModelGen(width/2,height/2,width/4-5);
-  pg.save("output" + (2) + ".png");
+  baseModelGen(width/2,height/2,(width/4)-5);
+  
   img = loadImage("output" + (2) + ".png");
-  image(pg, 0, 0);
+  
+  scale(.5);
+  translate(width/2, height/2);
+  image(img, 0, 0);
+  save("output" + (3) + ".png");
 }
 
 // Draw a circle
@@ -91,14 +95,15 @@ double[][] inscribe(float x, float y, float radius, int npoints){
 void baseModelGen(float x, float y, float radius) {
   pg.beginDraw();
   pg.imageMode(CENTER);
-  pg.translate(pg.width, 0);  
+  pg.translate(pg.width, 0);
   pg.rotate(radians(90));
   double pts[][] = inscribe(x, y, radius, 2);
   for (int i = 0;  i < pts.length; i++) {
     
   circle((float) pts[i][0], (float) pts[i][1], radius);    
   }
-  pg.endDraw();  
+  pg.endDraw();
+  pg.save("output" + (2) + ".png");
 }
 
 // Returns the set of rotation angles the sublayer will need to be rotated for applying to the next layer
