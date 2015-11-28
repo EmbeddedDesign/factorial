@@ -116,3 +116,30 @@ float[] getRotationAngles(int n) {
   }
   return retVals;
 }
+
+// Because getRotationAngles assumes you will start with the upward facing vertex (for odd layers)
+// OR clockwise one vertex from top-center (for even layers)
+// we need to be able to determine which vertex in the array to begin pasting at to have the correct rotation for each paste
+// vertices - array of vertices that is returned from inscribe
+// outputs the integer top-level array index for the starting vertex
+int getStartingVertex(double[][] vertices) {
+  int index = 0;
+  double maxY = vertices[0][1];
+  //for ODD layers, the point with the highest Y coord will be the starting point
+  for (int i = 0; i < vertices.length; i++) {
+    if (vertices[i][1] > maxY) {
+      maxY = vertices[i][1];
+      index = i;
+    }
+  }
+  if (vertices.length % 2 == 0) {
+    //EVEN layer - there will be 2 points with same Y, the one with larger X is start point
+    int index2 = 0;
+    double maxY2 = vertices[0][1];
+    for (int i = 0; i < vertices.length; i++) {
+      if (vertices[i][1] > maxY2 && i != index) index2 = i;
+    }
+    if (vertices[index2][0] > vertices[index][0]) index = index2;
+  }
+  return index;
+}
