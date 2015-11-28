@@ -4,10 +4,16 @@
  * http://awesometologist.deviantart.com/
  */
 
+// Number of iterations to run
+int depth = 2;
+
 // Setup function
 void setup() {
+  frame.setTitle("Factorial");
   size(400, 400);
+  //surface.setResizable(true);
   stroke(0);
+  noLoop();
 }
 
 // draw
