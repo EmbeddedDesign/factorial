@@ -93,15 +93,26 @@ double[][] inscribe(float x, float y, float radius, int npoints){
   return polygon(x, y, radius, npoints);
 }
 
-//Generate a circle with a line through the center. Use the endpoints of this line as the centerpoints of two more circles
+// Generate a circle with a line through the center. Use the endpoints of this line as the centerpoints of two more circles
 // x - X coordinate of centerpoint for center circle
 // y - Y coordinate of centerpoint for center circle
 // radius - radius of the center circle
 void baseModelGen(float x, float y, float radius) {
-  rotate(PI/2);
   double pts[][] = inscribe(x, y, radius ,2);
   for (int i = 0;  i < pts.length; i++) {
     circle((float) pts[i][0], (float) pts[i][1], radius);
   }
-  //rotate(PI/2);
+}
+
+// Returns the set of rotation angles the sublayer will need to be rotated for applying to the next layer
+// Array length will be equal to the layer number being passed
+// n - represents the target layer, for which you need to generate n rotation values
+float[] getRotationAngles(int n) {
+  float[] retVals = new float[n];
+  retVals[0] = PI;
+  if (n % 2 == 0) retVals[0] += (TWO_PI / n) / 2;
+  for (int i = 1; i < n; i++) {
+    retVals[i] = retVals[i-1] + (TWO_PI / n);
+  }
+  return retVals;
 }
