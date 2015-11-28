@@ -22,28 +22,23 @@ void setup() {
 // draw
 void draw() {
   pg.beginDraw();
-  baseModelGen(width/2,height/2,(width/4)-5);
+  baseModelGen(width/2,height/2,(width/4), 0);
   pg.save("output" + (2) + ".png");
-  //pg.pushMatrix();
   pg.clear();
   
-  //create base circle for layer 3
-  double[][] coords = inscribe(pg.width/2, pg.height/2, (pg.width/2)-5, 3);
-  pg.pushMatrix();
-  //push the matrix and build a small 2
-  
-  pg.imageMode(CENTER);
-  pg.translate(pg.width/2, pg.height/2);
-  pg.scale(.5);
-  pg.translate(-pg.width/2, -pg.height/2);
-  baseModelGen(pg.width/2,pg.height/2,(width/4)-5);
-  
+  double[][] coords = inscribe(pg.width/2, pg.height/2, (pg.width/4), 3, 0);
+  pg.pushMatrix(); 
   int start = getStartingVertex(coords);
-  pg.translate((float) coords[start][0]-pg.width/2, (float) coords[start][1]-pg.height/2);
-  pg.popMatrix();
+  float[] angles = getRotationAngles(3);
+  
+  for (int i = 0; i < coords.length; i++) {
+    int index = (i + start) % coords.length;
+    baseModelGen((float)coords[index][0], (float)coords[index][1], (pg.width/8), angles[i]);
+    pg.pushMatrix();
+  }
+  for (int i = 0; i < coords.length + 1; i++) pg.popMatrix();
   
   pg.save("output" + (3) + ".png");
-  //pg.popMatrix();
   pg.endDraw();
   image(pg, 0, 0);
 }
@@ -73,7 +68,7 @@ void points(double[][] intersections, float radius){
 // y - Y coordinate of centerpoint
 // radius - radius of the polygon
 // npoints - number of points on the polygon
-double[][] polygon(float x, float y, float radius, int npoints) {
+double[][] polygon(float x, float y, float radius, int npoints, float theta) {
   pg.fill(#ffc0cb, 200);
   double angle = TWO_PI / npoints;
   // create an array of vertices for returning to inscribe()
@@ -85,8 +80,8 @@ double[][] polygon(float x, float y, float radius, int npoints) {
     double a = i * angle;
     // adding (Pi/2 - Pi/npoints) to angle ensures
     // the bottom face of the reguar polygon is parallel to the X axis
-    double sx = x + cos((float) (a + (PI/2 - PI/npoints))) * radius;
-    double sy = y + sin((float) (a + (PI/2 - PI/npoints))) * radius;
+    double sx = x + cos((float) (a + (PI/2 - PI/npoints) + theta)) * radius;
+    double sy = y + sin((float) (a + (PI/2 - PI/npoints) + theta)) * radius;
     vertices[i][0] = sx;
     vertices[i][1] = sy;
     pg.vertex((float) sx, (float) sy);
@@ -100,21 +95,22 @@ double[][] polygon(float x, float y, float radius, int npoints) {
 // y - Y coordinate of centerpoint
 // radius - radius of the object
 // npoints - number of points on the polygon
-double[][] inscribe(float x, float y, float radius, int npoints){
+double[][] inscribe(float x, float y, float radius, int npoints, float theta){
+  if (npoints == 2) theta += PI/2;
   circle(x, y, radius);
-  return polygon(x, y, radius, npoints);
+  return polygon(x, y, radius, npoints, theta);
 }
 
 // Generate a circle with a line through the center. Use the endpoints of this line as the centerpoints of two more circles
 // x - X coordinate of centerpoint for center circle
 // y - Y coordinate of centerpoint for center circle
 // radius - radius of the center circle
-void baseModelGen(float x, float y, float radius) {
+void baseModelGen(float x, float y, float radius, float theta) {
   pg.pushMatrix();
-  pg.imageMode(CENTER);
-  pg.translate(pg.width, 0);
-  pg.rotate(radians(90));
-  double pts[][] = inscribe(x, y, radius, 2);
+  //pg.imageMode(CENTER);
+  //pg.translate(pg.width, 0);
+  //pg.rotate(radians(90));
+  double pts[][] = inscribe(x, y, radius, 2, theta);
   for (int i = 0;  i < pts.length; i++) {
     circle((float) pts[i][0], (float) pts[i][1], radius);    
   }
