@@ -27,16 +27,13 @@ void draw() {
   pg.clear();
   
   double[][] coords = inscribe(pg.width / 2, pg.height / 2, pg.width / 4, 3, 0);
-  pg.pushMatrix(); 
   int start = getStartingVertex(coords);
   float[] angles = getRotationAngles(3);
   
   for (int i = 0; i < coords.length; i++) {
     int index = (i + start) % coords.length;
     baseModelGen((float) coords[index][0], (float) coords[index][1], pg.width / 8, angles[i]);
-    pg.pushMatrix();
   }
-  for (int i = 0; i < coords.length + 1; i++) pg.popMatrix();
   circle(pg.width / 2, pg.height / 2, pg.width / 2);
   
   pg.save("output" + (3) + ".png");
