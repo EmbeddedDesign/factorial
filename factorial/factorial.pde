@@ -19,7 +19,8 @@ void setup() {
 // draw
 void draw() {
   background(255, 255, 255);
-  points(inscribe(200,200,width/2-10,7), 5);
+  //points(inscribe(200,200,width/2-10,7), 5);
+  baseModelGen(200,200,width/4-10);
   smooth();
   saveFrame("output.png");
 }
@@ -78,4 +79,12 @@ double[][] polygon(float x, float y, float radius, int npoints) {
 double[][] inscribe(float x, float y, float radius, int npoints){
   circle(x, y, radius);
   return polygon(x, y, radius, npoints);
+}
+
+//Generate a circle with a line through the center. Use the endpoints of this line as the centerpoints of two more circle  
+void baseModelGen(float x, float y, float radius) {
+  double pts[][] = inscribe(x, y, radius ,2);
+  for (int i = 0;  i < pts.length; i++) {
+    circle((float) pts[i][0], (float) pts[i][1], radius);
+  }
 }
