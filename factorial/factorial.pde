@@ -31,16 +31,24 @@ void drawCircle(float x, float y, float radius){
 // y - Y coordinate of centerpoint
 // radius - radius of the polygon
 // npoints - number of points on the polygon
-void polygon(float x, float y, float radius, int npoints) {
+float[][] polygon(float x, float y, float radius, int npoints) {
   fill(#ffc0cb, 200);
   float angle = TWO_PI / npoints;
+  // create an array of vertices for returning to inscribe()
+  float[][] vertices = new float[npoints][2];
   beginShape();
   for (float a = 0; a < TWO_PI; a += angle) {
-    float sx = x + cos(a) * radius;
-    float sy = y + sin(a) * radius;
+    // adding (Pi/2 - Pi/npoints) to angle ensures
+    // the bottom face of the reguar polygon is parallel to the X axis
+    float sx = x + cos(a + (PI/2 - PI/npoints)) * radius;
+    float sy = y + sin(a + (PI/2 - PI/npoints)) * radius;
+    int i = (int) (a / angle);
+    vertices[i][0] = sx;
+    vertices[i][1] = sy;
     vertex(sx, sy);
   }
   endShape(CLOSE);
+  return vertices;
 }
 
 // Inscribe a polygon in a circle
