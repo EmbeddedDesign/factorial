@@ -93,7 +93,7 @@ double[][] inscribe(float x, float y, float radius, int npoints){
   return polygon(x, y, radius, npoints);
 }
 
-//Generate a circle with a line through the center. Use the endpoints of this line as the centerpoints of two more circles
+// Generate a circle with a line through the center. Use the endpoints of this line as the centerpoints of two more circles
 // x - X coordinate of centerpoint for center circle
 // y - Y coordinate of centerpoint for center circle
 // radius - radius of the center circle
@@ -107,5 +107,48 @@ void baseModelGen(float x, float y, float radius) {
     
   circle((float) pts[i][0], (float) pts[i][1], radius);    
   }
+<<<<<<< HEAD
   pg.endDraw();  
+=======
+}
+
+// Returns the set of rotation angles the sublayer will need to be rotated for applying to the next layer
+// Array length will be equal to the layer number being passed
+// n - represents the target layer, for which you need to generate n rotation values
+float[] getRotationAngles(int n) {
+  float[] retVals = new float[n];
+  retVals[0] = PI;
+  if (n % 2 == 0) retVals[0] += (TWO_PI / n) / 2;
+  for (int i = 1; i < n; i++) {
+    retVals[i] = retVals[i-1] + (TWO_PI / n);
+  }
+  return retVals;
+}
+
+// Because getRotationAngles assumes you will start with the upward facing vertex (for odd layers)
+// OR clockwise one vertex from top-center (for even layers)
+// we need to be able to determine which vertex in the array to begin pasting at to have the correct rotation for each paste
+// vertices - array of vertices that is returned from inscribe
+// outputs the integer top-level array index for the starting vertex
+int getStartingVertex(double[][] vertices) {
+  int index = 0;
+  double minY = vertices[0][1];
+  //for ODD layers, the point with the lowest Y coord will be the starting point
+  for (int i = 0; i < vertices.length; i++) {
+    if (vertices[i][1] < minY) {
+      minY = vertices[i][1];
+      index = i;
+    }
+  }
+  if (vertices.length % 2 == 0) {
+    //EVEN layer - there will be 2 points with same Y, the one with larger X is start point
+    int index2 = 0;
+    double minY2 = vertices[0][1];
+    for (int i = 0; i < vertices.length; i++) {
+      if (vertices[i][1] < minY2 && i != index) index2 = i;
+    }
+    if (vertices[index2][0] > vertices[index][0]) index = index2;
+  }
+  return index;
+>>>>>>> 10b02522ab18d27b8d187ebed2c384b72cb18b60
 }
