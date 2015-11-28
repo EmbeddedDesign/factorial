@@ -40,10 +40,7 @@ void points(float[][] intersections, float radius){
   fill(#000000);
   for (int i = 0; i < intersections.length ; i++) {
     ellipse(intersections[i][0], intersections[i][1], 2*radius, 2*radius);
-    println(str(intersections[i][0]), str(intersections[i][1]));
   }
-  println(intersections.length);
-  println();
 }
 
 // Draw a polygon
