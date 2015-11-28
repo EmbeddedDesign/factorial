@@ -37,6 +37,7 @@ void draw() {
     pg.pushMatrix();
   }
   for (int i = 0; i < coords.length + 1; i++) pg.popMatrix();
+  circle(pg.width / 2, pg.height / 2, pg.width / 2);
   
   pg.save("output" + (3) + ".png");
   pg.endDraw();
