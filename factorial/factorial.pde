@@ -13,7 +13,7 @@ void setup() {
 // draw
 void draw() {
   background(255, 255, 255);
-  inscribe(200,200,100,5);
+  points(inscribe(200,200,100,7), 5);
   smooth();
   saveFrame("output.png");
 }
@@ -34,7 +34,10 @@ void points(float[][] intersections, float radius){
   fill(#000000);
   for (int i = 0; i < intersections.length ; i++) {
     ellipse(intersections[i][0], intersections[i][1], 2*radius, 2*radius);
+    println(str(intersections[i][0]), str(intersections[i][1]));
   }
+  println(intersections.length);
+  println();
 }
 
 // Draw a polygon
@@ -67,7 +70,7 @@ float[][] polygon(float x, float y, float radius, int npoints) {
 // y - Y coordinate of centerpoint
 // radius - radius of the object
 // npoints - number of points on the polygon
-void inscribe(float x, float y, float radius, int npoints){
+float[][] inscribe(float x, float y, float radius, int npoints){
   circle(x, y, radius);
-  polygon(x, y, radius, npoints);
+  return polygon(x, y, radius, npoints);
 }
