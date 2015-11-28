@@ -21,19 +21,15 @@ void setup() {
 
 // draw
 void draw() {
-  //pg.beginDraw();
   generate();
-  //pg.endDraw();
-  image(pg, 0, 0);
 }
 
 // generate recursive images
 void generate(){
-  for(int i=1; i < depth; i++){
     baseModelGen(width/2,height/2,width/4-5);
-    pg.save("output" + (i+1) + ".png");
-    img = loadImage("output" + (i+1) + ".png");
-  }
+    pg.save("output" + (2) + ".png");
+    img = loadImage("output" + (2) + ".png");
+    image(pg, 0, 0);
 }
 
 // Draw a circle
@@ -107,9 +103,7 @@ void baseModelGen(float x, float y, float radius) {
     
   circle((float) pts[i][0], (float) pts[i][1], radius);    
   }
-<<<<<<< HEAD
   pg.endDraw();  
-=======
 }
 
 // Returns the set of rotation angles the sublayer will need to be rotated for applying to the next layer
@@ -150,5 +144,4 @@ int getStartingVertex(double[][] vertices) {
     if (vertices[index2][0] > vertices[index][0]) index = index2;
   }
   return index;
->>>>>>> 10b02522ab18d27b8d187ebed2c384b72cb18b60
 }
