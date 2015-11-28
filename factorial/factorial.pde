@@ -9,7 +9,7 @@ int depth = 2;
 
 // Setup function
 void setup() {
-  frame.setTitle("Factorial");
+  surface.setTitle("Factorial");
   size(400, 400);
   //surface.setResizable(true);
   stroke(0);
@@ -19,7 +19,7 @@ void setup() {
 // draw
 void draw() {
   background(255, 255, 255);
-  points(inscribe(200,200,100,4), 5);
+  points(inscribe(200,200,100,7), 5);
   smooth();
   saveFrame("output.png");
 }
@@ -36,10 +36,10 @@ void circle(float x, float y, float radius){
 
 // Draw circles at coordinates (not to be confused with Processing point() function)
 // radius - radius of the points
-void points(float[][] intersections, float radius){
+void points(double[][] intersections, float radius){
   fill(#000000);
   for (int i = 0; i < intersections.length ; i++) {
-    ellipse(intersections[i][0], intersections[i][1], 2*radius, 2*radius);
+    ellipse((float) intersections[i][0], (float) intersections[i][1], 2*radius, 2*radius);
   }
 }
 
@@ -48,21 +48,23 @@ void points(float[][] intersections, float radius){
 // y - Y coordinate of centerpoint
 // radius - radius of the polygon
 // npoints - number of points on the polygon
-float[][] polygon(float x, float y, float radius, int npoints) {
+double[][] polygon(float x, float y, float radius, int npoints) {
   fill(#ffc0cb, 200);
-  float angle = TWO_PI / npoints;
+  double angle = TWO_PI / npoints;
   // create an array of vertices for returning to inscribe()
-  float[][] vertices = new float[npoints][2];
+  double[][] vertices = new double[npoints][2];
   beginShape();
-  for (float a = 0; a < TWO_PI; a += angle) {
+  //loop on an integer to avoid precision issues
+  //previously looping while a < TWO_PI, and npoints==7 caused array index violations
+  for (int i = 0; i < npoints; i++) {
+    double a = i * angle;
     // adding (Pi/2 - Pi/npoints) to angle ensures
     // the bottom face of the reguar polygon is parallel to the X axis
-    float sx = x + cos(a + (PI/2 - PI/npoints)) * radius;
-    float sy = y + sin(a + (PI/2 - PI/npoints)) * radius;
-    int i = (int) (a / angle);
+    double sx = x + cos((float) (a + (PI/2 - PI/npoints))) * radius;
+    double sy = y + sin((float) (a + (PI/2 - PI/npoints))) * radius;
     vertices[i][0] = sx;
     vertices[i][1] = sy;
-    vertex(sx, sy);
+    vertex((float) sx, (float) sy);
   }
   endShape(CLOSE);
   return vertices;
@@ -73,7 +75,7 @@ float[][] polygon(float x, float y, float radius, int npoints) {
 // y - Y coordinate of centerpoint
 // radius - radius of the object
 // npoints - number of points on the polygon
-float[][] inscribe(float x, float y, float radius, int npoints){
+double[][] inscribe(float x, float y, float radius, int npoints){
   circle(x, y, radius);
   return polygon(x, y, radius, npoints);
 }
