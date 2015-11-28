@@ -24,18 +24,26 @@ void draw() {
   pg.beginDraw();
   baseModelGen(width/2,height/2,(width/4)-5);
   pg.save("output" + (2) + ".png");
-  pg.pushMatrix();
-  //pg.clear();
-  pg.imageMode(CENTER);
+  //pg.pushMatrix();
+  pg.clear();
   
+  //create base circle for layer 3
+  double[][] coords = inscribe(pg.width/2, pg.height/2, (pg.width/2)-5, 3);
+  pg.pushMatrix();
+  //push the matrix and build a small 2
+  
+  pg.imageMode(CENTER);
   pg.translate(pg.width/2, pg.height/2);
-  pg.rotate(radians(90));
   pg.scale(.5);
   pg.translate(-pg.width/2, -pg.height/2);
+  baseModelGen(pg.width/2,pg.height/2,(width/4)-5);
   
-  baseModelGen(width/2,height/2,(width/4)-5);
-  pg.save("output" + (3) + ".png");
+  int start = getStartingVertex(coords);
+  pg.translate((float) coords[start][0]-pg.width/2, (float) coords[start][1]-pg.height/2);
   pg.popMatrix();
+  
+  pg.save("output" + (3) + ".png");
+  //pg.popMatrix();
   pg.endDraw();
   image(pg, 0, 0);
 }
@@ -102,6 +110,7 @@ double[][] inscribe(float x, float y, float radius, int npoints){
 // y - Y coordinate of centerpoint for center circle
 // radius - radius of the center circle
 void baseModelGen(float x, float y, float radius) {
+  pg.pushMatrix();
   pg.imageMode(CENTER);
   pg.translate(pg.width, 0);
   pg.rotate(radians(90));
@@ -110,6 +119,7 @@ void baseModelGen(float x, float y, float radius) {
     circle((float) pts[i][0], (float) pts[i][1], radius);    
   }
   circle(x, y, radius*2);
+  pg.popMatrix();
 }
 
 // Returns the set of rotation angles the sublayer will need to be rotated for applying to the next layer
