@@ -19,7 +19,7 @@ void setup() {
 // draw
 void draw() {
   background(255, 255, 255);
-  points(inscribe(200,200,100,7), 5);
+  points(inscribe(200,200,width/2-10,7), 5);
   smooth();
   saveFrame("output.png");
 }
