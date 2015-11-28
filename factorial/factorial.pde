@@ -21,9 +21,9 @@ void setup() {
 
 // draw
 void draw() {
-  pg.beginDraw();
+  //pg.beginDraw();
   generate();
-  pg.endDraw();
+  //pg.endDraw();
   image(pg, 0, 0);
 }
 
@@ -98,8 +98,14 @@ double[][] inscribe(float x, float y, float radius, int npoints){
 // y - Y coordinate of centerpoint for center circle
 // radius - radius of the center circle
 void baseModelGen(float x, float y, float radius) {
-  double pts[][] = inscribe(x, y, radius ,2);
+  pg.beginDraw();
+  pg.imageMode(CENTER);
+  pg.translate(pg.width, 0);  
+  pg.rotate(radians(90));
+  double pts[][] = inscribe(x, y, radius, 2);
   for (int i = 0;  i < pts.length; i++) {
-    circle((float) pts[i][0], (float) pts[i][1], radius);
+    
+  circle((float) pts[i][0], (float) pts[i][1], radius);    
   }
+  pg.endDraw();  
 }
