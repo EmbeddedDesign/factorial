@@ -93,7 +93,10 @@ double[][] inscribe(float x, float y, float radius, int npoints){
   return polygon(x, y, radius, npoints);
 }
 
-//Generate a circle with a line through the center. Use the endpoints of this line as the centerpoints of two more circle  
+//Generate a circle with a line through the center. Use the endpoints of this line as the centerpoints of two more circles
+// x - X coordinate of centerpoint for center circle
+// y - Y coordinate of centerpoint for center circle
+// radius - radius of the center circle
 void baseModelGen(float x, float y, float radius) {
   double pts[][] = inscribe(x, y, radius ,2);
   for (int i = 0;  i < pts.length; i++) {
