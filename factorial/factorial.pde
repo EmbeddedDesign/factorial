@@ -22,18 +22,18 @@ void setup() {
 // draw
 void draw() {
   pg.beginDraw();
-  baseModelGen(width/2,height/2,(width/4), 0);
+  baseModelGen(width / 2, height / 2, width / 4, 0);
   pg.save("output" + (2) + ".png");
   pg.clear();
   
-  double[][] coords = inscribe(pg.width/2, pg.height/2, (pg.width/4), 3, 0);
+  double[][] coords = inscribe(pg.width / 2, pg.height / 2, pg.width / 4, 3, 0);
   pg.pushMatrix(); 
   int start = getStartingVertex(coords);
   float[] angles = getRotationAngles(3);
   
   for (int i = 0; i < coords.length; i++) {
     int index = (i + start) % coords.length;
-    baseModelGen((float)coords[index][0], (float)coords[index][1], (pg.width/8), angles[i]);
+    baseModelGen((float) coords[index][0], (float) coords[index][1], pg.width / 8, angles[i]);
     pg.pushMatrix();
   }
   for (int i = 0; i < coords.length + 1; i++) pg.popMatrix();
@@ -47,19 +47,20 @@ void draw() {
 // x - X coordinate of centerpoint
 // y - Y coordinate of centerpoint
 // radius - radius of the circle
-void circle(float x, float y, float radius){
+void circle(float x, float y, float radius) {
   pg.stroke(0);
   pg.strokeWeight(2);
   pg.fill(#00ffff, 50);
-  pg.ellipse(x, y, 2*radius, 2*radius);
+  pg.ellipse(x, y, 2 * radius, 2 * radius);
 }
 
 // Draw circles at coordinates (not to be confused with Processing point() function)
+// intersections - list of coordinates to draw points (intersections[i][0] = Xi / intersections[i][1] = Yi)
 // radius - radius of the points
-void points(double[][] intersections, float radius){
+void points(double[][] intersections, float radius) {
   pg.fill(#000000);
   for (int i = 0; i < intersections.length ; i++) {
-    pg.ellipse((float) intersections[i][0], (float) intersections[i][1], 2*radius, 2*radius);
+    pg.ellipse((float) intersections[i][0], (float) intersections[i][1], 2 * radius, 2 * radius);
   }
 }
 
@@ -68,6 +69,7 @@ void points(double[][] intersections, float radius){
 // y - Y coordinate of centerpoint
 // radius - radius of the polygon
 // npoints - number of points on the polygon
+// theta - radian offset to rotate clockwise
 double[][] polygon(float x, float y, float radius, int npoints, float theta) {
   pg.fill(#ffc0cb, 200);
   double angle = TWO_PI / npoints;
@@ -80,8 +82,8 @@ double[][] polygon(float x, float y, float radius, int npoints, float theta) {
     double a = i * angle;
     // adding (Pi/2 - Pi/npoints) to angle ensures
     // the bottom face of the reguar polygon is parallel to the X axis
-    double sx = x + cos((float) (a + (PI/2 - PI/npoints) + theta)) * radius;
-    double sy = y + sin((float) (a + (PI/2 - PI/npoints) + theta)) * radius;
+    double sx = x + cos((float) (a + (PI / 2 - PI / npoints) + theta)) * radius;
+    double sy = y + sin((float) (a + (PI / 2 - PI / npoints) + theta)) * radius;
     vertices[i][0] = sx;
     vertices[i][1] = sy;
     pg.vertex((float) sx, (float) sy);
@@ -95,8 +97,10 @@ double[][] polygon(float x, float y, float radius, int npoints, float theta) {
 // y - Y coordinate of centerpoint
 // radius - radius of the object
 // npoints - number of points on the polygon
-double[][] inscribe(float x, float y, float radius, int npoints, float theta){
-  if (npoints == 2) theta += PI/2;
+// theta - radian offset to rotate clockwise
+double[][] inscribe(float x, float y, float radius, int npoints, float theta) {
+  //we actually want the line case to point upwards, so rotate by extra PI/2
+  if (npoints == 2) theta += PI / 2;
   circle(x, y, radius);
   return polygon(x, y, radius, npoints, theta);
 }
@@ -105,11 +109,9 @@ double[][] inscribe(float x, float y, float radius, int npoints, float theta){
 // x - X coordinate of centerpoint for center circle
 // y - Y coordinate of centerpoint for center circle
 // radius - radius of the center circle
+// theta - radian offset to rotate whole model
 void baseModelGen(float x, float y, float radius, float theta) {
   pg.pushMatrix();
-  //pg.imageMode(CENTER);
-  //pg.translate(pg.width, 0);
-  //pg.rotate(radians(90));
   double pts[][] = inscribe(x, y, radius, 2, theta);
   for (int i = 0;  i < pts.length; i++) {
     circle((float) pts[i][0], (float) pts[i][1], radius);    
@@ -126,7 +128,7 @@ float[] getRotationAngles(int n) {
   retVals[0] = PI;
   if (n % 2 == 0) retVals[0] += (TWO_PI / n) / 2;
   for (int i = 1; i < n; i++) {
-    retVals[i] = retVals[i-1] + (TWO_PI / n);
+    retVals[i] = retVals[i - 1] + (TWO_PI / n);
   }
   return retVals;
 }
@@ -134,8 +136,8 @@ float[] getRotationAngles(int n) {
 // Because getRotationAngles assumes you will start with the upward facing vertex (for odd layers)
 // OR clockwise one vertex from top-center (for even layers)
 // we need to be able to determine which vertex in the array to begin pasting at to have the correct rotation for each paste
-// vertices - array of vertices that is returned from inscribe
 // outputs the integer top-level array index for the starting vertex
+// vertices - array of vertices that is returned from inscribe
 int getStartingVertex(double[][] vertices) {
   int index = 0;
   double minY = vertices[0][1];
