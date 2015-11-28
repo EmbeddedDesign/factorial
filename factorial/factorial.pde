@@ -5,7 +5,7 @@
  */
 
 // Number of iterations to run
-int depth = 3;
+int depth = 4;
 PGraphics pg;
 PImage img;
 
@@ -26,19 +26,43 @@ void draw() {
   pg.save("output" + (2) + ".png");
   pg.clear();
   
-  double[][] coords = inscribe(pg.width / 2, pg.height / 2, pg.width / 4, 3, 0);
-  int start = getStartingVertex(coords);
-  float[] angles = getRotationAngles(3);
+  //double[][] coords = inscribe(pg.width / 2, pg.height / 2, pg.width / 4, 3, 0);
+  //int start = getStartingVertex(coords);
+  //float[] angles = getRotationAngles(3);
   
-  for (int i = 0; i < coords.length; i++) {
-    int index = (i + start) % coords.length;
-    baseModelGen((float) coords[index][0], (float) coords[index][1], pg.width / 8, angles[i]);
-  }
-  circle(pg.width / 2, pg.height / 2, pg.width / 2);
+  //for (int i = 0; i < coords.length; i++) {
+  //  int index = (i + start) % coords.length;
+  //  baseModelGen((float) coords[index][0], (float) coords[index][1], pg.width / 8, angles[i]);
+  //}
+  //circle(pg.width / 2, pg.height / 2, pg.width / 2);
+  
+  generateLayerX(pg.width / 2, pg.height / 2, pg.height / 4, 0, depth);
   
   pg.save("output" + (3) + ".png");
   pg.endDraw();
   image(pg, 0, 0);
+}
+
+// Generic function to recursively build a generic layer
+// x - X coord of center point
+// y - Y coord of center point
+// radius - radius of initial inscribe call
+// theta - radial offset angle
+// layer - integer layer number in set [2,)
+void generateLayerX(float x, float y, float radius, double theta, int layer) {
+  if (layer == 2) {
+    baseModelGen(x, y, radius, (float) theta);
+  } else {
+    double[][] coords = inscribe(x, y, radius, layer, (float) theta);
+    int start = getStartingVertex(coords);
+    double[] angles = getRotationAngles(layer);
+    
+    for (int i = 0; i < coords.length; i++) {
+      int index = (i + start) % coords.length;
+      generateLayerX((float) coords[index][0], (float) coords[index][1], radius/2, angles[i]+theta, layer-1);
+    }
+    circle(x, y, radius*2);
+  }
 }
 
 // Draw a circle
@@ -47,7 +71,7 @@ void draw() {
 // radius - radius of the circle
 void circle(float x, float y, float radius) {
   pg.stroke(0);
-  pg.strokeWeight(2);
+  pg.strokeWeight(1);
   pg.fill(#00ffff, 50);
   pg.ellipse(x, y, 2 * radius, 2 * radius);
 }
@@ -109,22 +133,22 @@ double[][] inscribe(float x, float y, float radius, int npoints, float theta) {
 // radius - radius of the center circle
 // theta - radian offset to rotate whole model
 void baseModelGen(float x, float y, float radius, float theta) {
-  pg.pushMatrix();
+  //pg.pushMatrix();
   double pts[][] = inscribe(x, y, radius, 2, theta);
   for (int i = 0;  i < pts.length; i++) {
     circle((float) pts[i][0], (float) pts[i][1], radius);    
   }
   circle(x, y, radius*2);
-  pg.popMatrix();
+  //pg.popMatrix();
 }
 
 // Returns the set of rotation angles the sublayer will need to be rotated for applying to the next layer
 // Array length will be equal to the layer number being passed
 // n - represents the target layer, for which you need to generate n rotation values
-float[] getRotationAngles(int n) {
-  float[] retVals = new float[n];
+double[] getRotationAngles(int n) {
+  double[] retVals = new double[n];
   retVals[0] = PI;
-  if (n % 2 == 0) retVals[0] += (TWO_PI / n) / 2;
+  if (n % 2 == 0) retVals[0] += (PI / n);
   for (int i = 1; i < n; i++) {
     retVals[i] = retVals[i - 1] + (TWO_PI / n);
   }
