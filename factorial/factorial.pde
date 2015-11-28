@@ -5,7 +5,7 @@
  */
 
 // Number of iterations to run
-int depth = 2;
+int depth = 3;
 PGraphics pg;
 PImage img;
 
@@ -17,17 +17,23 @@ void setup() {
   //surface.setResizable(true);
   stroke(0);
   noLoop();
-  img = loadImage("output.png");
 }
 
 // draw
 void draw() {
   pg.beginDraw();
-  image(img, 0, 0);
-  image(img, 25, 25);
-  //points(inscribe(width/2, height/2, width/2-10,2), 5);
-  //pg.endDraw();
-  //pg.save("output.png");
+  generate();
+  pg.endDraw();
+  image(pg, 0, 0);
+}
+
+// generate recursive images
+void generate(){
+  for(int i=1; i < depth; i++){
+    baseModelGen(width/2,height/2,width/4-5);
+    pg.save("output" + (i+1) + ".png");
+    img = loadImage("output" + (i+1) + ".png");
+  }
 }
 
 // Draw a circle
@@ -35,6 +41,7 @@ void draw() {
 // y - Y coordinate of centerpoint
 // radius - radius of the circle
 void circle(float x, float y, float radius){
+  pg.stroke(0);
   pg.strokeWeight(2);
   pg.fill(#00ffff, 50);
   pg.ellipse(x, y, 2*radius, 2*radius);
@@ -84,4 +91,12 @@ double[][] polygon(float x, float y, float radius, int npoints) {
 double[][] inscribe(float x, float y, float radius, int npoints){
   circle(x, y, radius);
   return polygon(x, y, radius, npoints);
+}
+
+//Generate a circle with a line through the center. Use the endpoints of this line as the centerpoints of two more circle  
+void baseModelGen(float x, float y, float radius) {
+  double pts[][] = inscribe(x, y, radius ,2);
+  for (int i = 0;  i < pts.length; i++) {
+    circle((float) pts[i][0], (float) pts[i][1], radius);
+  }
 }

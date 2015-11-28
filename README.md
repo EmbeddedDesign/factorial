@@ -1,7 +1,7 @@
 # factorial
 Factorial art generator
 
-Based on concept by [Awesometologist](http://awesometologist.deviantart.com/)
+Based on concept by [Awesometologist](http://awesometologist.deviantart.com/gallery/41641535/Factorial)
 
 Contributors:
 
