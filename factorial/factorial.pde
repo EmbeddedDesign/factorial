@@ -21,15 +21,10 @@ void setup() {
 
 // draw
 void draw() {
-  generate();
-}
-
-// generate recursive images
-void generate(){
-    baseModelGen(width/2,height/2,width/4-5);
-    pg.save("output" + (2) + ".png");
-    img = loadImage("output" + (2) + ".png");
-    image(pg, 0, 0);
+  baseModelGen(width/2,height/2,width/4-5);
+  pg.save("output" + (2) + ".png");
+  img = loadImage("output" + (2) + ".png");
+  image(pg, 0, 0);
 }
 
 // Draw a circle
