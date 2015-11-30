@@ -23,7 +23,7 @@ void setup() {
 void draw() {
   pg.beginDraw();
   baseModelGen(width / 2, height / 2, width / 4, 0);
-  pg.save("output" + (2) + ".png");
+  pg.save((2) + "factorial.png");
   pg.clear();
   
   //double[][] coords = inscribe(pg.width / 2, pg.height / 2, pg.width / 4, 3, 0);
@@ -38,7 +38,7 @@ void draw() {
   
   generateLayerX(pg.width / 2, pg.height / 2, pg.height / 4, 0, depth);
   
-  pg.save("output" + (3) + ".png");
+  pg.save((depth) + "factorial.png");
   pg.endDraw();
   image(pg, 0, 0);
 }

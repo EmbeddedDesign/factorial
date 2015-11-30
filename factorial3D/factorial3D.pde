@@ -11,6 +11,7 @@ BaseModelGen baseModelGen = new BaseModelGen();
 
 // setup
 void setup() {
+  surface.setTitle("Factorial 3D");
   size(700, 700, P3D);
   smooth(8);
   // this makes it so that we can see lines we draw through fills
@@ -39,7 +40,6 @@ void draw() {
 // gets called every time the mouse wheel is moved
 // scroll up to zoom in, scroll down to zoom out
 void mouseWheel(MouseEvent event) {
- float e = event.getCount();
  wheelAccumulator = constrain(wheelAccumulator + event.getCount(), 1, 250);
 }
 
