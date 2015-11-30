@@ -2,6 +2,8 @@
 // Generate the base model (2!)
 */
 class BaseModelGen {
+  // Can't decide if it's better to do this in the constructor and create
+  // a new object every time or just pass it to generate...
   //// define and initialize some variables
   //float xPos = 0.0;
   //float yPos = 0.0;

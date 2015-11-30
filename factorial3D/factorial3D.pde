@@ -3,11 +3,10 @@
 */
 
 // Define some variables
-float wheelAccumulator = 4;
+float wheelAccumulator = 2;
 float mouseYValue = 0;
 float mouseXValue = 0;
-// declate/instantiate/initialize a new 2! base model
-BaseModelGen baseModelGen = new BaseModelGen();
+ThreeFactorial threeFactorial = new ThreeFactorial();
 
 // setup
 void setup() {
@@ -32,8 +31,8 @@ void draw() {
   rotateY(mouseXValue/float(height) * PI);
   scale(wheelAccumulator/5);
   
-  // generate a base model at the center of the canvas
-  baseModelGen.generate(0, 0, 0);
+  // generate a three factorial graphic at the center of the canvas
+  threeFactorial.generate();
 }
 
 // mouseWheel event listener
