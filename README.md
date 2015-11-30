@@ -15,7 +15,11 @@ factorial project generates 2D factorial art similar to [this concept](http://aw
 factorial3D project extends this concept into 3-dimensions.
 
 ### Examples:
+
 3! 2D example
+
 ![3!2D](/examples/3factorial.png)
+
 2! 3D example
+
 ![2!3D](/examples/2factorial3D.png)
