@@ -15,17 +15,17 @@ class BaseModelGen {
   //  zPos = z;
   //}
   // call generate() to generate a base model
-  void generate(float xPos, float yPos, float zPos) {
+  void generate(float xPos, float yPos, float zPos, float size) {
     pushMatrix();
     translate(xPos, yPos, zPos);
     stroke(0);
     strokeWeight(3);
     line(0, height/4, 0, 0, -height/4, 0);
     Sphere sphere = new Sphere();
-    sphere.generate(0, height/4);
-    sphere.generate(height/4, height/4);
-    sphere.generate(-height/4, height/4);
-    sphere.generate(0, height/2);
+    sphere.generate(0, (size * sqrt(3))/2);
+    sphere.generate(height/4, (size * sqrt(3))/2);
+    sphere.generate(-height/4,(size * sqrt(3))/2);
+    sphere.generate(0, size * sqrt(3));
     popMatrix();
   }
 }

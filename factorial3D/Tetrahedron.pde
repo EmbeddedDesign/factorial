@@ -2,9 +2,8 @@
 // Create a regular tetrahedron
 */
 class Tetrahedron {
-  float size = 350;
   // generate a regular tetrahedron
-  void generate() {
+  void generate(float size) {
     noFill();
     beginShape();
     
