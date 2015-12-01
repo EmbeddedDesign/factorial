@@ -2,8 +2,9 @@
 // Generate the base model (2!)
 */
 MouseEvents mouseEvents = new MouseEvents();
-ThreeFactorial threeFactorial = new ThreeFactorial();
 BaseModelGen baseModel = new BaseModelGen();
+ThreeFactorial threeFactorial = new ThreeFactorial();
+FourFactorial fourFactorial = new FourFactorial();
 
 // setup
 void setup() {
@@ -29,6 +30,9 @@ void draw() {
   
   // generate a three factorial graphic at the center of the canvas
   threeFactorial.generate(0, 0, 0, 200);
+  
+  // generate a four factorial graphic at the center of the canvas
+  //fourFactorial.generate(0, 0, 0, 200);
 }
 
 // mouseWheel event listener

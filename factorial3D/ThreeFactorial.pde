@@ -6,17 +6,21 @@ class ThreeFactorial {
   BaseModelGen baseModelGen = new BaseModelGen();
   Tetrahedron tetra = new Tetrahedron();
   Sphere sphere = new Sphere();
+  
   void generate(float xPos, float yPos, float zPos, float size) {
     pushMatrix();
     translate(xPos, yPos, zPos);
     strokeWeight(5);
-    tetra.generate(size);
-    float radiusOfEnclosingSphere = size * sqrt(3);
-    sphere.generate(0, radiusOfEnclosingSphere);
-    baseModelGen.generate(size, size, size, size);
-    baseModelGen.generate(size, -size, -size, size);
-    baseModelGen.generate(-size, size, -size, size);
-    baseModelGen.generate(-size, -size, size, size);
+    
+    float[][] baseModelVerts = tetra.generate(size);
+    
+    float radiusOfCircumsphere = 2 * size * sqrt(3.0/8.0);
+    sphere.generate(0, radiusOfCircumsphere);
+    
+    for (int i = 0; i < baseModelVerts.length; i++ ) {
+      baseModelGen.generate(baseModelVerts[i][0], baseModelVerts[i][1], baseModelVerts[i][2], radiusOfCircumsphere);
+    }
+    
     popMatrix();
   }
 }
