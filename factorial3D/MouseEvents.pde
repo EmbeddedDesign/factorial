@@ -3,14 +3,27 @@
 */
 class MouseEvents {
   // Define some variables
+  String help = "Click+Drag Mouse/Arrow Keys = Rotate\nScroll Wheel = Zoom\n\"s\" = Save";
   float wheelAccumulator = 2;
   float mouseYValue = 0;
   float mouseXValue = 0;
+  boolean mouseClicked = false;
   void update() {
     // update mouse values
     rotateX(-mouseYValue/float(width) * PI);
     rotateY(mouseXValue/float(height) * PI);
     scale(wheelAccumulator/5);
+    if (mouseClicked) {
+        fill(0);
+        textSize(height/25);
+        hint(DISABLE_DEPTH_TEST);
+        camera();
+        noLights();
+        text(help, width/150, height/30); 
+      }
+      else {
+        hint(ENABLE_DEPTH_TEST);
+      }
   }
   // mouseWheel event listener
   // gets called every time the mouse wheel is moved
@@ -29,9 +42,33 @@ class MouseEvents {
   
   // mousePressed event listener
   // gets called every time the right mouse button is pressed
-  void mousePressed() {
+  void mouseClicked() {
     if (mouseButton == RIGHT) {
-      
+      mouseClicked = !mouseClicked;
+    }
+    else {
+      mouseClicked = false;
+    }
+  }
+
+  void keyPressed() {
+    if (key == 's') {
+      save("ouput.png");
+      println("saved");
+    }
+    else if (key == CODED) {
+      if (keyCode == UP) {
+        mouseYValue = mouseYValue + (height/10);
+      }
+      else if (keyCode == DOWN) {
+        mouseYValue = mouseYValue - (height/10);
+      }
+      else if (keyCode == LEFT) {
+        mouseXValue = mouseXValue + (width/10);
+      }
+      else if (keyCode == RIGHT) {
+        mouseXValue = mouseXValue - (width/10);
+      }
     }
   }
 }

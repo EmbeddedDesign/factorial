@@ -10,16 +10,19 @@ class FourFactorial {
   void generate(float xPos, float yPos, float zPos, float size) {
     pushMatrix();
     translate(xPos, yPos, zPos);
-    strokeWeight(5);
+    strokeWeight(3);
     
     float[][] baseModelVerts = cube.generate(size);
     
-    //float radiusOfCircumsphere = 2 * size * sqrt(3.0/8.0);
-    //sphere.generate(0, radiusOfCircumsphere);
+    float radiusOfCircumsphere = size * sqrt(3.0);
+    sphere.generate(0, radiusOfCircumsphere);
     
-    //for (int i = 0; i < baseModelVerts.length; i++ ) {
-    //  threeFactorial.generate(baseModelVerts[i][0], baseModelVerts[i][1], baseModelVerts[i][2], radiusOfCircumsphere);
-    //}
+    for (int i = 0; i < baseModelVerts.length; i++ ) {
+     threeFactorial.generate(baseModelVerts[i][0], baseModelVerts[i][1], baseModelVerts[i][2], radiusOfCircumsphere / 4 / sqrt(3.0/8.0));
+    }
+    
+    // circumsphere aroung the entire assmbly
+    sphere.generate(0, 5 * radiusOfCircumsphere / 4 / sqrt(3.0/8.0));
     
     popMatrix();
   }

@@ -1,5 +1,5 @@
 /* factorial3D
-// Generate the base model (2!)
+// 
 */
 MouseEvents mouseEvents = new MouseEvents();
 BaseModelGen baseModel = new BaseModelGen();
@@ -9,7 +9,7 @@ FourFactorial fourFactorial = new FourFactorial();
 // setup
 void setup() {
   surface.setTitle("Factorial 3D");
-  size(700, 700, P3D);
+  size(1000, 1000, P3D);
   smooth(8);
   // this makes it so that we can see lines we draw through fills
   //hint(DISABLE_OPTIMIZED_STROKE);
@@ -24,15 +24,15 @@ void draw() {
   translate(width/2, height/2, 0);
   // check for mouse events
   mouseEvents.update();
-  
+    
   // generate a two factorial base model at the center of the canvas
   //baseModel.generate(0, 0, 0, 200);
   
   // generate a three factorial graphic at the center of the canvas
-  threeFactorial.generate(0, 0, 0, 200);
+  //threeFactorial.generate(0, 0, 0, 200);
   
   // generate a four factorial graphic at the center of the canvas
-  //fourFactorial.generate(0, 0, 0, 200);
+  fourFactorial.generate(0, 0, 0, 200);
 }
 
 // mouseWheel event listener
@@ -49,6 +49,10 @@ void mouseDragged() {
 
 // mousePressed event listener
 // gets called every time the right mouse button is pressed
-void mousePressed() {
-  mouseEvents.mousePressed(); 
+void mouseClicked() {
+  mouseEvents.mouseClicked(); 
+}
+
+void keyPressed() {
+  mouseEvents.keyPressed();
 }

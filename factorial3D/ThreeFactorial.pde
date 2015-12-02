@@ -8,18 +8,26 @@ class ThreeFactorial {
   Sphere sphere = new Sphere();
   
   void generate(float xPos, float yPos, float zPos, float size) {
+    strokeWeight(3);
     pushMatrix();
     translate(xPos, yPos, zPos);
-    strokeWeight(5);
     
+    pushMatrix();
+    float rotationAngle = atan((sqrt(2.0)/2.0));
+    rotateX(rotationAngle);
     float[][] baseModelVerts = tetra.generate(size);
     
     float radiusOfCircumsphere = 2 * size * sqrt(3.0/8.0);
-    sphere.generate(0, radiusOfCircumsphere);
-    
     for (int i = 0; i < baseModelVerts.length; i++ ) {
       baseModelGen.generate(baseModelVerts[i][0], baseModelVerts[i][1], baseModelVerts[i][2], radiusOfCircumsphere);
     }
+    popMatrix();
+    
+    // circumsphere aroung the tetrahedron
+    sphere.generate(0, radiusOfCircumsphere);
+    
+    // circumsphere aroung the entire assmbly
+    sphere.generate(0, radiusOfCircumsphere*2);
     
     popMatrix();
   }
