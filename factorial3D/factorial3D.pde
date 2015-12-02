@@ -2,8 +2,8 @@
 // 
 */
 MouseEvents mouseEvents = new MouseEvents();
-BaseModelGen baseModel = new BaseModelGen();
-ThreeFactorial threeFactorial = new ThreeFactorial();
+//BaseModelGen baseModel = new BaseModelGen();
+//ThreeFactorial threeFactorial = new ThreeFactorial();
 FourFactorial fourFactorial = new FourFactorial();
 
 // setup

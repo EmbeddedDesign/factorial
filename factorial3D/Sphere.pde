@@ -4,9 +4,9 @@
 class Sphere {
   // generate a sphere at Y-Coordinate "yPos" of radius "radius"
   void generate(float yPos, float radius) {
-    sphereDetail(50);
+    sphereDetail(30);
     stroke(0);
-    strokeWeight(.15);
+    strokeWeight(.2);
     noFill();
     //fill(0,255,255,50);
     pushMatrix();

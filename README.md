@@ -23,3 +23,18 @@ factorial3D project extends this concept into 3-dimensions.
 2! 3D example
 
 ![2!3D](/examples/2factorial3D.png)
+
+## To Do:
+
+* Calculate and implement rotation of base models on tetrahedron vertices
+* Calculate and implement rotation of three factorials on cube vertices
+* Better help-menu
+* Implement dodecahedron
+* Wiki and README updates
+
+### Ideal Enhancements:
+
+* Optimize for performance.
+* Dynamically calculate strokeWeight()
+* Add some color
+* Multi-threaded animation
