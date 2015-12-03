@@ -6,9 +6,8 @@ class Sphere {
   void generate(float yPos, float radius) {
     sphereDetail(30);
     stroke(0);
-    strokeWeight(.2);
-    noFill();
-    //fill(0,255,255,50);
+    strokeWeight(.15);
+    //fill(0,255,255,20);
     pushMatrix();
     translate(0, yPos, 0);
     sphere(radius);

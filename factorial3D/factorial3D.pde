@@ -2,8 +2,8 @@
 // 
 */
 MouseEvents mouseEvents = new MouseEvents();
-//BaseModelGen baseModel = new BaseModelGen();
-//ThreeFactorial threeFactorial = new ThreeFactorial();
+BaseModelGen baseModel = new BaseModelGen();
+ThreeFactorial threeFactorial = new ThreeFactorial();
 FourFactorial fourFactorial = new FourFactorial();
 
 // setup
@@ -12,7 +12,7 @@ void setup() {
   size(1000, 1000, P3D);
   smooth(8);
   // this makes it so that we can see lines we draw through fills
-  //hint(DISABLE_OPTIMIZED_STROKE);
+  hint(DISABLE_OPTIMIZED_STROKE);
 }
 
 // draw

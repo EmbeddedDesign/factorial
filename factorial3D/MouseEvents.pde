@@ -4,7 +4,7 @@
 class MouseEvents {
   // Define some variables
   String help = "Click+Drag Mouse/Arrow Keys = Rotate\nScroll Wheel = Zoom\n\"s\" = Save";
-  float wheelAccumulator = 2;
+  float wheelAccumulator = 3;
   float mouseYValue = 0;
   float mouseXValue = 0;
   boolean mouseClicked = false;

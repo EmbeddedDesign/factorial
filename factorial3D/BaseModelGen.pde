@@ -8,7 +8,7 @@ class BaseModelGen {
     pushMatrix();
     translate(xPos, yPos, zPos);
     stroke(0);
-    strokeWeight(3);
+    strokeWeight(2);
     line(0, size/2, 0, 0, -size/2, 0);
     Sphere sphere = new Sphere();
     

@@ -22,7 +22,7 @@ factorial3D project extends this concept into 3-dimensions.
 
 2! 3D example
 
-![2!3D](/examples/2factorial3D.png)
+![2!3D](/examples/3factorial3D.png)
 
 ## To Do:
 
