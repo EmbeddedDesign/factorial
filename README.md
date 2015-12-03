@@ -26,17 +26,15 @@ factorial3D project extends this concept into 3-dimensions.
 
 ## To Do:
 
-* Calculate and implement rotation of base models on tetrahedron vertices
-* Calculate and implement rotation of three factorials on cube vertices
 * Better help-menu
 * Dynamically calculate strokeWeight()
 * Implement dodecahedron
-* Wiki and README updates
+* Wiki and README enhancements
 
 ### Ideal Enhancements:
 
 * Dynamically calculate vertices of platonic solids
 * Dynamically calculate rotation to centroid given array of vertices
 * Optimize for performance
-* Add some color
-* Multi-threaded animation
+* Add some color?
+* Multi-threaded animation?
