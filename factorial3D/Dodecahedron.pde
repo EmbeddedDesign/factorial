@@ -30,7 +30,7 @@ class Dodecahedron {
       { PHI,  0, 1/PHI },
       { PHI, 0, -1/PHI },
       { -PHI, 0, 1/PHI },
-      { -PHI, 0, -1/PHI },
+      { -PHI, 0, -1/PHI }
     };
     
     for (int i = 0; i < verts.length; i++) {
