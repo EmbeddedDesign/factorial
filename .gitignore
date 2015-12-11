@@ -1,3 +1,14 @@
 /factorial/*.png
+/factorial/*.tif
 /factorial3D/*.png
-*.DS_Store
+/factorial3D/*.tif
+/factorial/backup_data
+
+# OS Generated Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

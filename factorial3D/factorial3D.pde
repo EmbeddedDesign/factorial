@@ -9,7 +9,8 @@ FourFactorial fourFactorial = new FourFactorial();
 // setup
 void setup() {
   surface.setTitle("Factorial 3D");
-  size(1000, 1000, P3D);
+  //size(1000, 1000, P3D);
+  
   smooth(8);
   // this makes it so that we can see lines we draw through fills
   hint(DISABLE_OPTIMIZED_STROKE);

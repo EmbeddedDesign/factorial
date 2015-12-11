@@ -1,5 +1,5 @@
 # factorial
-Factorial art generator in [Processing](https://processing.org/)
+Factorial(!) art generator in [Processing](https://processing.org/)
 
 Based on concept by [Awesometologist](http://awesometologist.deviantart.com/gallery/41641535/Factorial)
 
@@ -26,9 +26,10 @@ factorial3D project extends this concept into 3-dimensions.
 
 ## To Do:
 
-* Better help-menu
-* Dynamically calculate strokeWeight()
-* Implement dodecahedron
+* Better help-menu for !3D
+* Better dynamic strokeWeight() calculation
+* Implement remaining platonic solids in !3D
+* Show progress of render in !2D
 * Wiki and README enhancements
 
 ### Ideal Enhancements:
