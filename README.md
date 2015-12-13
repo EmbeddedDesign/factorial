@@ -16,6 +16,8 @@ factorial3D project extends this concept into 3-dimensions.
 
 ## Examples:
 
+More examples at [github project page](https://embeddeddesign.github.io/factorial/)
+
 2!
 
 ![2!](/examples/2factorial.png)
