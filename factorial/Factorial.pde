@@ -6,7 +6,7 @@ class Factorial {
   BaseModel baseModel = new BaseModel();
 
   void generate(float xPos, float yPos, float radius, float nPoints) {
-    pg.strokeWeight(.5*nPoints);
+    //pg.strokeWeight((float)depth/(1+depth-nPoints));
     pg.pushMatrix();
     double[][] vertices = new double[(int)nPoints][2];
     int i = 0;
