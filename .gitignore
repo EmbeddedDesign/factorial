@@ -3,6 +3,8 @@
 /factorial3D/*.png
 /factorial3D/*.tif
 /factorial/backup_data
+/output
+/tiles
 
 # OS Generated Files
 .DS_Store
