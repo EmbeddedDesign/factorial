@@ -17,7 +17,7 @@ void setup() {
   pg = createGraphics(1000, 1000);
   pg.beginDraw();
   // This needs to be set to something that works well for give depth/size
-  pg.strokeWeight(.1);
+  pg.strokeWeight(.5);
   pg.background(255);
   //fill(0,255,255,15);
   pg.noFill();

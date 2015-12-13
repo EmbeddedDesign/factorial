@@ -1,4 +1,4 @@
-# factorial
+# factorial(!)
 Factorial(!) art generator in [Processing](https://processing.org/)
 
 Based on concept by [Awesometologist](http://awesometologist.deviantart.com/gallery/41641535/Factorial)
@@ -10,17 +10,37 @@ Based on concept by [Awesometologist](http://awesometologist.deviantart.com/gall
 * <a href="https://github.com/Karys"><img src="https://avatars0.githubusercontent.com/u/7199971?v=3&s=60" alt="Karys" width="22" height="22"> [Karys](https://github.com/Karys)
 
 ## Project Description:
-factorial project generates 2D factorial art similar to [this concept](http://awesometologist.deviantart.com/gallery/41641535/Factorial) by Awesometologist.
+factorial(!) project generates 2D factorial art similar to [this concept](http://awesometologist.deviantart.com/gallery/41641535/Factorial) by Awesometologist.
 
 factorial3D project extends this concept into 3-dimensions.
 
 ## Examples:
 
-3! 2D example
+2!
 
-![3!2D](/examples/3factorial.png)
+![2!](/examples/2factorial.png)
 
-2! 3D example
+3!
+
+![3!](/examples/3factorial.png)
+
+4!
+
+![4!](/examples/4factorial.png)
+
+5!
+
+![5!](/examples/5factorial.png)
+
+6!
+
+![6!](/examples/6factorial.png)
+
+7!
+
+![7!](/examples/7factorial.png)
+
+2! 3D
 
 ![2!3D](/examples/3factorial3D.png)
 
