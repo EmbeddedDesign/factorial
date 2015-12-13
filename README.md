@@ -1,5 +1,5 @@
 # factorial(!)
-Factorial(!) art generator in [Processing](https://processing.org/)
+Factorial(!) art generator in [Processing 3.0.1](https://processing.org/download/?processing)
 
 Based on concept by [Awesometologist](http://awesometologist.deviantart.com/gallery/41641535/Factorial)
 
@@ -52,12 +52,13 @@ More examples at [github project page](https://embeddeddesign.github.io/factoria
 * Better dynamic strokeWeight() calculation
 * Implement remaining platonic solids in !3D
 * Show progress of render in !2D
-* Wiki and README enhancements
+* Wiki, website, and README updates
 
 ### Ideal Enhancements:
 
 * Dynamically calculate vertices of platonic solids
-* Dynamically calculate rotation to centroid given array of vertices
+* Dynamically calculate rotation to centroid given array of vertices for platonic solids
 * Optimize for performance
 * Add some color?
 * Multi-threaded animation?
+ * Some people, when confronted with a problem, think "I know, I'll use multithreading". Nothhw tpe yawrve o oblems.
