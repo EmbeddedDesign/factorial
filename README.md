@@ -14,9 +14,7 @@ factorial(!) project generates 2D factorial art similar to [this concept](http:/
 
 factorial3D project extends this concept into 3-dimensions.
 
-## Examples:
-
-More examples at [github project page](http://noctivore.com/factorial/)
+## Examples: (More examples over at the [project page](http://noctivore.com/factorial/))
 
 2!
 
