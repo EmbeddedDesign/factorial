@@ -5,7 +5,7 @@
  */
 
 // Number of iterations to run
-int depth = 5;
+int depth = 9;
 PGraphics pg;
 PImage img;
 Factorial factorial = new Factorial();
@@ -13,7 +13,7 @@ Factorial factorial = new Factorial();
 // Setup function
 void setup() {
   surface.setTitle("Factorial");
-  size(1000, 1000);
+  //size(800, 800);
   pg = createGraphics(1000, 1000);
   pg.beginDraw();
   // This needs to be set to something that works well for give depth/size
